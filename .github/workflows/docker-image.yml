@@ -21,7 +21,8 @@ jobs:
           context: .
           file: ./Dockerfile
           build-args: |
-            TOKEN=${{ secrets.GITHUB }}
+            GIT_TOKEN=${{ secrets.GIT_TOKEN }}
+            GIT_NAME=${{ secrets.GIT_NAME }}
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.DOCKER_NAME }}:latest
       - name: Update docker
