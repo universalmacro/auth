@@ -1,6 +1,9 @@
 package services
 
 import (
+	"time"
+
+	"github.com/gin-gonic/gin"
 	"github.com/universalmacro/auth/dao/models"
 	"github.com/universalmacro/auth/dao/repositories"
 	"github.com/universalmacro/common/fault"
@@ -37,4 +40,44 @@ func (a AuthService) CreateAccount(email, password string) (Account, error) {
 	}
 	a.accountRepository.Create(account)
 	return Account{entity: *account}, nil
+}
+
+func (a AuthService) Auth() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		auth := Authorize(c)
+		if auth.Status == Authorized {
+			account := a.GetAccount(auth.AccountId)
+			c.Set("account", *account)
+		}
+		c.Next()
+	}
+}
+
+func (a AuthService) GetAccount(id uint) *Account {
+	account, _ := a.accountRepository.FindOne(id)
+	if account == nil {
+		return nil
+	}
+	return &Account{*account}
+}
+
+func (a AuthService) CreateSession(email, password string) (string, error) {
+	account, _ := a.accountRepository.FindOne("email = ?", email)
+	if account == nil {
+		return "", fault.ErrUnauthorized
+	}
+	if !utils.PasswordsMatch(account.Password, password, account.Salt) {
+		return "", fault.ErrUnauthorized
+	}
+	expiredAt := time.Now().AddDate(1, 0, 0).Unix()
+	token, err := utils.SignJwt(
+		utils.UintToString(account.ID()),
+		account.Email,
+		string(account.Role),
+		expiredAt,
+	)
+	if err != nil {
+		return "", fault.ErrUndefined
+	}
+	return token, nil
 }
