@@ -5,7 +5,7 @@ info:
     Dparty
   contact:
     email: chenyunda218@gmail.com
-  version: 0.0.2
+  version: 0.0.3
 servers:
   - url: https://auth.sum-foods.com
   - url: https://auth-uat.sum-foods.com
