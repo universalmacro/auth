@@ -14,7 +14,6 @@ jobs:
       # Checkout your code
       - name: Checkout
         uses: actions/checkout@v2
-
       - name: Generate Typescript Client
         uses: openapi-generators/openapitools-generator-action@v1
         with:
