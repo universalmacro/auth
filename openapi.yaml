@@ -12,7 +12,60 @@ servers:
 tags:
   - name: Account
   - name: Restaurant
+  - name: Admin
 paths:
+  /admins:
+    post:
+      tags:
+        - Admin
+      description: Create user account
+      operationId: CreateAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+      responses:
+        '201':
+          description: 'Admin created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+    get:
+      tags:
+        - Admin
+      description: Create user account
+      operationId: ListAccount
+      parameters:
+        - $ref: '#/components/parameters/Ordering'
+        - $ref: '#/components/parameters/IndexParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: 'List Admin'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountList'
+  /admins/sessions:
+    post:
+      tags:
+        - Admin
+      description: Create Login session
+      operationId: CreateSession
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionRequest'
+      responses:
+        '201':
+          description: 'Account created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
   /account:
     get:
       tags:
@@ -109,14 +162,12 @@ components:
         - email
         - password
       properties:
+        account:
+          type: string
         email:
           type: string
-          minLength: 11
-          maxLength: 11
         password:
           type: string
-          minLength: 10
-          maxLength: 128
     CreateAccountRequest:
       description: 'Create account request schema'
       required:
@@ -149,10 +200,11 @@ components:
       type: object
       required:
         - id
-        - email
         - role
       properties:
         id:
+          type: string
+        account:
           type: string
         email:
           type: string

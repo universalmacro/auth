@@ -33,10 +33,12 @@ func (a AuthService) CreateAccount(email, password string) (Account, error) {
 	}
 	hashed, salt := utils.HashWithSalt(password)
 	account := &models.Account{
-		Email:    email,
-		Password: hashed,
-		Salt:     salt,
-		Role:     string(USER),
+		Email: email,
+		Password: models.Password{
+			Password: hashed,
+			Salt:     salt,
+		},
+		Role: string(USER),
 	}
 	a.accountRepository.Create(account)
 	return Account{entity: *account}, nil
@@ -66,7 +68,7 @@ func (a AuthService) CreateSession(email, password string) (string, error) {
 	if account == nil {
 		return "", fault.ErrUnauthorized
 	}
-	if !utils.PasswordsMatch(account.Password, password, account.Salt) {
+	if !account.PasswordMatching(password) {
 		return "", fault.ErrUnauthorized
 	}
 	expiredAt := time.Now().AddDate(1, 0, 0).Unix()

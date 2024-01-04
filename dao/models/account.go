@@ -10,9 +10,9 @@ import (
 
 type Account struct {
 	gorm.Model
-	Email    string `json:"email" gorm:"index:email_index,unique"`
-	Password string `json:"password" gorm:"type:CHAR(128)"`
-	Salt     []byte `json:"salt"`
+	Account *string `json:"account" gorm:"index:uniqueIndex"`
+	Email   string  `json:"email" gorm:"index:email_index,unique"`
+	Password
 	Role     string `json:"role" gorm:"type:VARCHAR(128)"`
 	Gender   string `json:"gender"`
 	Birthday time.Time
