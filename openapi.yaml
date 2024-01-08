@@ -38,7 +38,7 @@ paths:
       tags:
         - Admin
       description: Create user account
-      operationId: ListAccount
+      operationId: ListAdmin
       parameters:
         - $ref: '#/components/parameters/Ordering'
         - $ref: '#/components/parameters/IndexParam'
