@@ -9,6 +9,8 @@ info:
 servers:
   - url: https://auth.sum-foods.com
   - url: https://auth-uat.sum-foods.com
+  - url: https://uat.api.universalmacro.com/auth
+  - url: https://api.universalmacro.com/auth
 tags:
   - name: Account
   - name: Restaurant
@@ -19,7 +21,7 @@ paths:
       tags:
         - Admin
       description: Create user account
-      operationId: CreateAccount
+      operationId: CreateAdmin
       requestBody:
         content:
           application/json:
@@ -48,24 +50,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountList'
-  /admins/sessions:
-    post:
-      tags:
-        - Admin
-      description: Create Login session
-      operationId: CreateSession
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateSessionRequest'
-      responses:
-        '201':
-          description: 'Account created'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Session'
   /account:
     get:
       tags:
