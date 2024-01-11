@@ -14,5 +14,5 @@ import (
 
 func init() {
 	db := dao.GetDBInstance()
-	db.AutoMigrate(&models.Account{}, &models.VerificationCode{}, &models.Admin{})
+	db.AutoMigrate(&models.Account{}, &models.VerificationCode{})
 }

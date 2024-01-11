@@ -255,6 +255,8 @@ github.com/ugorji/go/codec v1.2.11 h1:BMaWp1Bb6fHwEtbplGBGJ498wD+LKlNSl25MjdZY4d
 github.com/ugorji/go/codec v1.2.11/go.mod h1:UNopzCgEMSXjBc6AOMqYvWC1ktqTAfzJZUZgYf6w6lg=
 github.com/universalmacro/common v0.0.0-20231231054814-2b51208bdcaf h1:VRe85bYYEmHHgIUnnLKOynv6Duh09No1QOOh1xiWQP0=
 github.com/universalmacro/common v0.0.0-20231231054814-2b51208bdcaf/go.mod h1:JIJBYUp23xuSLy06pBHEBaXmrMB8CNuDcO1a10oAAOY=
+github.com/universalmacro/common v0.0.0-20240111033307-dbbc69503075 h1:15utSYM43X7cTouSEkDMV6oBtmfIJi/+Y8DaLocrqcI=
+github.com/universalmacro/common v0.0.0-20240111033307-dbbc69503075/go.mod h1:JIJBYUp23xuSLy06pBHEBaXmrMB8CNuDcO1a10oAAOY=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=

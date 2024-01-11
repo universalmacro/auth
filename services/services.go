@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/universalmacro/auth/dao/models"
 	"github.com/universalmacro/auth/dao/repositories"
+	"github.com/universalmacro/common/auth"
 	"github.com/universalmacro/common/fault"
 	"github.com/universalmacro/common/singleton"
 	"github.com/universalmacro/common/utils"
@@ -34,7 +35,7 @@ func (a AuthService) CreateAccount(email, password string) (Account, error) {
 	hashed, salt := utils.HashWithSalt(password)
 	account := &models.Account{
 		Email: email,
-		Password: models.Password{
+		Password: auth.Password{
 			Password: hashed,
 			Salt:     salt,
 		},

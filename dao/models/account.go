@@ -4,17 +4,18 @@ import (
 	"time"
 
 	abstract "github.com/universalmacro/common/abstract"
+	"github.com/universalmacro/common/auth"
 	"github.com/universalmacro/common/snowflake"
 	"gorm.io/gorm"
 )
 
 type Account struct {
 	gorm.Model
-	Account *string `json:"account" gorm:"index:uniqueIndex"`
-	Email   string  `json:"email" gorm:"index:email_index,unique"`
-	Password
-	Role     string `json:"role" gorm:"type:VARCHAR(128)"`
-	Gender   string `json:"gender"`
+	auth.Password
+	Account  *string `json:"account" gorm:"index:uniqueIndex"`
+	Email    string  `json:"email" gorm:"index:email_index,unique"`
+	Role     string  `json:"role" gorm:"type:VARCHAR(128)"`
+	Gender   string  `json:"gender"`
 	Birthday time.Time
 }
 

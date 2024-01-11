@@ -4,7 +4,7 @@ go 1.21.1
 
 require (
 	github.com/gin-gonic/gin v1.9.1
-	github.com/universalmacro/common v0.0.0-20231231054814-2b51208bdcaf
+	github.com/universalmacro/common v0.0.0-20240111033307-dbbc69503075
 	gorm.io/gorm v1.25.5
 )
 
